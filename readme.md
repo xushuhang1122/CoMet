@@ -78,3 +78,17 @@ We recommend that you use our follow-up work, <a href="https://CK-Arena.site">
 </a> to conduct research on Undercover games. This is our LLM testing benchmark designed based on Undercover, which includes better game logic, anti-crash mechanisms, and prompts. We are still working on the follow-up work of undercover, mainly updating it on the CK-Arena homepage.
 
 
+## Citation
+
+If you use this work in your research, please cite:
+
+```bibtex
+@inproceedings{xu-zhong-2025-comet,
+    title     = "CoMet: Metaphor-Driven Covert Communication for Multi-Agent Language Games",
+    author    = "Xu, Shuhang and Zhong, Fangwei",
+    booktitle = "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month     = jul,
+    year      = "2025",
+    doi       = "10.18653/v1/2025.acl-long.389",
+}
+```
