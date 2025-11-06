@@ -25,17 +25,26 @@ WIU_c_num = 3
 WIU_u_num = 2
 
 
-WIU_c_mode = 1
-WIU_u_mode = 1
+WIU_c_mode = 2
+WIU_u_mode = 2
 """
 player mode:
 0:CoT
-1:ComMet
+1:CoMet_woMet
+2:CoMet
 """
 
 
-WIU_c_model = "gpt-3.5-turbo"
-WIU_u_model = "gpt-3.5-turbo"
+WIU_c_model = "gpt-4o"
+WIU_u_model = "gpt-4o"
+
+# Metaphor analysis weights configuration
+WIU_metaphor_feature_weights = [1, 0.85, 0.7, 0.55, 0.4]
+WIU_metaphor_metaphor_weights = [1, 0.8, 0.6]
+WIU_metaphor_threshold = 0.5
+
+# Experience pool self-evolution configuration
+WIU_self_evolving = False  # Enable/disable experience pool self-improvement
 
 
 

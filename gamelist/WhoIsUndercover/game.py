@@ -6,6 +6,7 @@ import datetime
 import csv
 import random
 from gamelist.WhoIsUndercover.player import Player
+from gamelist.WhoIsUndercover.experience_manager import ExperienceManager
 from utils import call_api
 
 class Game:
@@ -19,7 +20,11 @@ class Game:
         self.players = {}
         self.player_alive = set()
         self.logdir = logdir
-        self.experience_pool_file = "data/WhoIsUndercover/experience_pool_ingame_generate.json"
+        self.experience_pool_file = "data/WhoIsUndercover/experience_pool.json"
+
+        # Initialize experience manager for metaphor learning
+        self.experience_manager = ExperienceManager(self.experience_pool_file)
+
         if not os.path.exists(self.logdir):
             os.makedirs(self.logdir)
         self.dialogue_history = [f"Player {i+1}:\n This player has not said anything yet. You should wait for them to speak before considering them.\n " for i in range(civ_count + und_count)]  # 初始化为字符串
@@ -84,6 +89,7 @@ class Game:
                                                                 , dialogue_history=self.dialogue_history
                                                                 , round_dialogue=round_dialogue
                                                                 , vote_history = self.vote_history
+                                                                , experience_manager = self.experience_manager
                                                                 )  
 
                 round_dialogue += f"Player{player_id}: {dialogue} \n"
@@ -138,6 +144,8 @@ class Game:
             if config.WIU_self_evolving:
                 self.experience_improvement()
             if self.turn == 10:
+                # Update metaphor experiences based on game results
+                self.finalize_experience_updates()
                 return True
             
             if self.check_game_end() == 1:
@@ -146,7 +154,10 @@ class Game:
                 new_filename = f'{result}.csv'
                 new_csv_filename = os.path.join(self.folder_path, new_filename)
                 os.rename(self.csv_filename, new_csv_filename)
-                
+
+                # Update metaphor experiences based on game results
+                self.finalize_experience_updates()
+
                 return True
             
             elif self.check_game_end() == -1:
@@ -155,6 +166,9 @@ class Game:
                 new_filename = f'{result}.csv'
                 new_csv_filename = os.path.join(self.folder_path, new_filename)
                 os.rename(self.csv_filename, new_csv_filename)
+
+                # Update metaphor experiences based on game results
+                self.finalize_experience_updates()
 
                 return False
             else:  
@@ -224,6 +238,161 @@ class Game:
         with open(self.csv_filename, mode='a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             writer.writerow([round, word, player_id, action, details])
+
+    # God perspective methods for metaphor experience management
+    def get_player_analysis_content(self, player_id: int, target_metaphor: str = None) -> dict:
+        """
+        Extract player's analysis content, particularly their understanding of metaphors.
+        This provides god's perspective access to player thoughts.
+        """
+        if player_id not in self.players:
+            return {}
+
+        player = self.players[player_id]
+        analysis_content = {}
+
+        # Extract from strategy if available
+        if hasattr(player, 'strategy') and player.strategy:
+            analysis_content['strategy'] = player.strategy
+
+        # Extract from feature analysis if available
+        if hasattr(player, 'feature') and player.feature:
+            analysis_content['feature'] = player.feature
+
+        # Extract from identity reasoning if available
+        if hasattr(player, 'identity') and player.identity:
+            analysis_content['identity'] = player.identity
+
+        # Extract metaphor-specific analysis if available
+        if hasattr(player, 'reaction') and player.reaction:
+            analysis_content['reaction'] = player.reaction
+
+        # Extract metaphor information if this player used one
+        if hasattr(player, 'metaphor') and player.metaphor:
+            analysis_content['own_metaphor'] = player.metaphor
+        if hasattr(player, 'explaination') and player.explaination:
+            analysis_content['own_explanation'] = player.explaination
+
+        return analysis_content
+
+    def evaluate_metaphor_success(self, metaphor_user_id: int, metaphor_content: str) -> tuple:
+        """
+        Evaluate metaphor success from god's perspective.
+        Returns (teammate_recognitions, rival_recognitions)
+        """
+        if metaphor_user_id not in self.players:
+            return 0, 0
+
+        user_player = self.players[metaphor_user_id]
+        user_word = user_player.word
+
+        teammate_recognitions = 0
+        rival_recognitions = 0
+
+        # Analyze each other player's understanding
+        for other_id, other_player in self.players.items():
+            if other_id == metaphor_user_id:
+                continue
+
+            is_teammate = (other_player.word == user_word)
+            understanding = self._analyze_player_understanding(other_player, metaphor_content)
+
+            if understanding:
+                if is_teammate and understanding.get('teammate_understands', False):
+                    teammate_recognitions += 1
+                elif not is_teammate and understanding.get('rival_can_guess', False):
+                    rival_recognitions += 1
+
+        # Consider voting patterns as additional evidence
+        vote_analysis = self._analyze_voting_patterns(metaphor_user_id)
+        if vote_analysis:
+            teammate_recognitions = max(teammate_recognitions, vote_analysis.get('teammate_support', 0))
+            rival_recognitions = max(rival_recognitions, vote_analysis.get('rival_detection', 0))
+
+        # Normalize to binary values
+        return (1 if teammate_recognitions > 0 else 0,
+                1 if rival_recognitions > 0 else 0)
+
+    def _analyze_player_understanding(self, player, metaphor: str) -> dict:
+        """
+        Analyze a player's understanding of a metaphor from their written analysis.
+        """
+        understanding = {'teammate_understands': False, 'rival_can_guess': False}
+
+        # Get player's analysis content
+        analysis = self.get_player_analysis_content(player.id)
+
+        # Combine all text sources for analysis
+        all_text = ""
+        for key, value in analysis.items():
+            if isinstance(value, str):
+                all_text += value.lower() + " "
+
+        metaphor_lower = metaphor.lower()
+
+        # Heuristic analysis of understanding
+        positive_indicators = [
+            'understand', 'clear', 'makes sense', 'good metaphor',
+            'clever', 'accurate', 'well described', 'gets it'
+        ]
+
+        negative_indicators = [
+            'confusing', 'unclear', 'doesn\'t make sense', 'bad metaphor',
+            'obvious', 'too direct', 'reveals', 'gives away'
+        ]
+
+        # Check for understanding indicators
+        for indicator in positive_indicators:
+            if indicator in all_text and metaphor_lower in all_text:
+                understanding['teammate_understands'] = True
+                break
+
+        # Check for guess-ability indicators
+        for indicator in negative_indicators:
+            if indicator in all_text and metaphor_lower in all_text:
+                understanding['rival_can_guess'] = True
+                break
+
+        # Also check if player mentions specific features that could lead to guessing
+        if any(word in all_text for word in ['guess', 'obvious', 'clearly']) and metaphor_lower in all_text:
+            understanding['rival_can_guess'] = True
+
+        return understanding
+
+    def _analyze_voting_patterns(self, metaphor_user_id: int) -> dict:
+        """
+        Analyze voting patterns to infer metaphor effectiveness.
+        """
+        # This is a simplified analysis - could be enhanced with more sophisticated
+        # analysis of voting history and player relationships
+
+        vote_analysis = {'teammate_support': 0, 'rival_detection': 0}
+
+        # For now, return empty analysis
+        # In a full implementation, you would:
+        # 1. Track who votes for whom over multiple rounds
+        # 2. Correlate metaphor usage with subsequent voting patterns
+        # 3. Identify if teammates tend to support the metaphor user
+        # 4. Identify if rivals tend to target the metaphor user
+
+        return vote_analysis
+
+    def finalize_experience_updates(self):
+        """
+        Called at game end to update experience pool based on actual game results.
+        """
+        if hasattr(self.experience_manager, 'update_experiences_from_game'):
+            updated_count = self.experience_manager.update_experiences_from_game(self)
+            if updated_count > 0:
+                print(f"Updated {updated_count} metaphor experiences based on game results")
+
+                # Log experience statistics
+                stats = self.experience_manager.get_experience_stats()
+                print(f"Experience pool stats: {stats}")
+
+                # Save high-score experiences if enabled
+                if config.WIU_self_evolving:
+                    self.experience_manager.save_and_reset_high_score_experiences()
 
 
 

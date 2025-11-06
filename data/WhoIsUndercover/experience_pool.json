@@ -1,0 +1,146 @@
+[
+    {
+        "id": "11",
+        "words": [
+            "memory",
+            "impression"
+        ],
+        "use": 0,
+        "method": "ONTOLOGICAL_METAPHOR",
+        "rival_recognitions": 0,
+        "teammate_recognitions": 0,
+        "total_references": 11,
+        "score": 0.51,
+        "metaphor": "they are treasures.",
+        "explain": "Describing feature: precious. Memories record various moments in our lives, which are important and meaningful for a person. When we recall those moments, it's like digging for a treasure",
+        "comment": "Result: teammates recognized you, and opponent did not guess your word 'memory'. Good job! Analysis: You captured the valuable characteristic of memory and the generated metaphor correctly expressed this characteristic, allowing your teammates to understand its meaning. And your opponent thought of the classic metaphor 'time is treasure', so he was misled into guessing that your word might be 'time'. Suggestion: You can refer to this experience to generate metaphors, pay attention to describing the features, and introduce interference with your opponent when possible."
+    },
+    {
+        "id": "12",
+        "words": [
+            "time",
+            "age"
+        ],
+        "use": 1,
+        "method": "ONTOLOGICAL_METAPHOR",
+        "rival_recognitions": 0,
+        "teammate_recognitions": 0,
+        "total_references": 11,
+        "score": 0.51,
+        "metaphor": "Time is money.",
+        "explain": "Describing feature: precious. Time is seen as an object that can be consumed or saved, as precious as money, and can be used to measure value.",
+        "comment": "Result: teammates recognized you, but my opponent also guessed the word 'time'. Analysis: You describe the characteristic of time being 'precious' and associate it with money as a metaphor, which is correct and allows your teammates to recognize your speech through this characteristic; However, the phrase 'time is money' has been widely circulated, even to the point of being a fixed combination. The opponent has obviously heard this phrase and used it to guess your words. Suggestion: You can refer to this metaphorical idea to help teammates recognize you, but in terms of preventing opponents from seeing through you, you can consider more original metaphorical descriptions."
+    },
+    {
+        "id": "13",
+        "words": [
+            "bee",
+            "butterfly"
+        ],
+        "use": 0,
+        "method": "ONTOLOGICAL_METAPHOR",
+        "rival_recognitions": 0,
+        "teammate_recognitions": 0,
+        "total_references": 1,
+        "score": 0.0,
+        "metaphor": "They are workers.",
+        "explain": "Describing feature: Work diligently. In nature, bee colonies have clear division of labor, among which worker bees are the main labor force in bee colonies. They work diligently and tirelessly, just like workers in human society",
+        "comment": "Result: teammates recognized you, and opponent did not guess your word 'bee'. Good job! Analysis: ..."
+    },
+    {
+        "id": "21",
+        "words": [
+            "debate",
+            "communicate"
+        ],
+        "use": 0,
+        "method": "STRUCTURAL_METAPHOR",
+        "rival_recognitions": 0,
+        "teammate_recognitions": 0,
+        "total_references": 11,
+        "score": 0.51,
+        "metaphor": "It is a battle.",
+        "explain": "Debating involves opposing positions and intense confrontations, like opposing sides on the battlefield attacking each other and vying for victory. Careful preparation and flexible response are required to ultimately determine the winner, and the outcome will have a profound impact.",
+        "comment": "Result:  My teammate quickly understood and correctly guessed the 'debate', and opponent did not guess your word. This metaphor is very effective because it fully embodies the competitiveness and antagonism in debate. Most people associate the similarity between debate and battle, so teammates can quickly guess the word. However, due to the common saying that 'debate is a battle', it may not be sufficient to have a strong disruptive effect in certain situations. Suggestion: More complex or unique metaphors can be used to avoid opponents guessing too early."
+    },
+    {
+        "id": "22",
+        "words": [
+            "theory",
+            "discipline"
+        ],
+        "use": 1,
+        "method": "STRUCTURAL_METAPHOR",
+        "rival_recognitions": 0,
+        "teammate_recognitions": 0,
+        "total_references": 11,
+        "score": 0.51,
+        "metaphor": "It is like a building.",
+        "explain": "Description feature: Structural. Theory is like a building, with a solid foundation, a framework that supports its whole, and its various parts are organized and connected together. This metaphor helps people understand the organization and systematicity of theory, where its various components are closely interconnected and interdependent.",
+        "comment": "Result:  Teammates failed to accurately guess the 'theory', and opponents also failed to guess your words.  Analysis:  This metaphor depicts the orderliness and structure of the theory, but it may be somewhat abstract for teammates. You can try some better expressions to describe the structural metaphor."
+    },
+    {
+        "id": "23",
+        "words": [
+            "bee",
+            "butterfly"
+        ],
+        "use": 0,
+        "method": "STRUCTURAL_METAPHOR",
+        "rival_recognitions": 0,
+        "teammate_recognitions": 0,
+        "total_references": 1,
+        "score": 0.5,
+        "metaphor": "They are members of society.",
+        "explain": "Characteristic description: Social. Bees are collective animals that live in beehives, each performing their own duties and collaborating to complete tasks. Each bee has its unique role and responsibility within the group, relying on each other and working seamlessly together. Therefore, comparing bees to \"social members\" emphasizes the role of individuals in the collective and the importance of collective cooperation.",
+        "comment": "Result:  My teammate accurately guessed 'bee'. Analysis:  This metaphor highlights the role and function of bees in society, particularly how they rely on and cooperate. Through this metaphor, teammates can clearly understand the importance of bees in the group."
+    },
+    {
+        "id": "31",
+        "words": [
+            "time",
+            "date"
+        ],
+        "use": 0,
+        "method": "SPATIAL_METAPHOR",
+        "rival_recognitions": 0,
+        "teammate_recognitions": 0,
+        "total_references": 11,
+        "score": 0.51,
+        "metaphor": "This is a one-way street",
+        "explain": "Description feature: Unidirectional. Time always flows forward and cannot be reversed, like a one-way street that can only move forward and cannot be turned back. This metaphor emphasizes the irreversibility and persistence of time, meaning that once the past cannot be returned to, we can only move forward towards the future.",
+        "comment": "This metaphor expresses the one-way flow of time by comparing it to a 'one-way street', which is clear and vivid. Teammates can easily understand this metaphor and quickly guess the correct word. However, due to the relatively straightforward expression 'time is a one-way street', it may make it easy for opponents to see through. In some highly competitive situations, one can try using more innovative or challenging metaphors to increase the uniqueness and difficulty of the metaphor. Suggestion: A more unique metaphor can be provided by describing a specific aspect of the passage of time, such as an irreversible, unchangeable reality."
+    },
+    {
+        "id": "32",
+        "words": [
+            "stimulate",
+            "nervous"
+        ],
+        "use": 1,
+        "method": "SPATIAL_METAPHOR",
+        "rival_recognitions": 0,
+        "teammate_recognitions": 0,
+        "total_references": 11,
+        "score": 0.51,
+        "metaphor": "He is riding a roller coaster",
+        "explain": "Describing feature: Stimulating, nerve-wracking. By comparing someone's experience to \"riding a roller coaster,\" this metaphor conveys that their life or emotions are full of ups and downs, intense and full of excitement. It emphasizes strong emotional fluctuations and instability, much like the rapid changes and thrills of riding a roller coaster.",
+        "comment": "Analysis:  Although this metaphor vividly conveys the feeling of emotional fluctuations, you directly describe the word itself rather than its partial features, which makes it easier for opponents to guess your words. Although the metaphor itself is correct and vivid, it does not have enough uniqueness to avoid the opponent's speculation. Suggestion:  Try to associate and expand your words, not directly describing the words themselves, but describing their features or related things."
+    },
+    {
+        "id": "33",
+        "words": [
+            "migrate",
+            "move house"
+        ],
+        "use": 0,
+        "method": "SPATIAL_METAPHOR",
+        "rival_recognitions": 0,
+        "teammate_recognitions": 0,
+        "total_references": 1,
+        "score": 0,
+        "metaphor": "It is a crossroad.",
+        "explain": "Describing feature: Choice, decision-making. By comparing 'migrating' or 'moving house' to 'a crossroad,' this metaphor conveys a moment in life when important choices must be made. A crossroad symbolizes multiple paths, with each path leading to a different outcome, highlighting the significance and complexity of decision-making.",
+        "comment": "Result: Teammates successfully understood and guessed \"crossroad.\" Analysis: This metaphor effectively captures the choice and pivotal nature often associated with \"migrating\" or \"moving house,\" accurately conveying the complexity and importance of decision-making in such a situation. While simple and straightforward, the metaphor clearly communicated the moment of critical choice, allowing teammates to quickly understand and guess it."
+    }
+]
