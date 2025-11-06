@@ -99,10 +99,10 @@ python main.py
   "words": ["word1", "word2"],
   "metaphor": "metaphorical_expression",
   "method": "ONTOLOGICAL_METAPHOR",
-  "teammate_recognitions": 1,  // Teammate recognition count
-  "rival_recognitions": 0,      // Opponent recognition count
-  "use": 0,                     // 0=success, 1=failure
-  "score": 0.85                 // Success rate score
+  "teammate_recognitions": 1,
+  "rival_recognitions": 0,
+  "use": 0,
+  "score": 0.85
 }
 ```
 
@@ -134,8 +134,6 @@ Evaluation of the comprehensive performance of CoT and CoMet agents in Undercove
 <br>
 <br>
 
-
-## 💫
 
 
 ## 🌍️Related Work (Benchmark for Undercover)
